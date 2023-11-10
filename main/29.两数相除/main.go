@@ -118,6 +118,7 @@ func abs(a int) int {
 // }
 
 // 类二分查找，使用任何数据都可以使用2^k之和表示，那么我们就可以借助空间换时间的方式进行查找，记录y*2^k进行记录，当x在两个区间之间时，那么k就是最大除数，本质还是加速乘
+// 时间 x  空间log2 x
 func divide(dividend int, divisor int) int {
 	if dividend == math.MinInt32 {
 		if divisor == 1 {
