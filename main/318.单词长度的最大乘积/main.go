@@ -33,29 +33,29 @@ func maxProduct(words []string) (ans int) {
 由于判断两个单词是否有公共字母是通过判断两个单词的位掩码的按位与运算实现，因此在位掩码相同的情况下，
 单词的长度不会影响是否有公共字母，当两个位掩码的按位与运算等于 000 时，为了得到最大单词长度乘积，这两个位掩码对应的单词长度应该尽可能大。 时间复杂度：O(N*(N+S)),S表示字符串的最大长度, 空间复杂度O(N)
 */
-// func maxProduct(words []string) (ans int) {
-// 	masks := map[int]int{}
-// 	for _, word := range words {
-// 		mask := 0
-// 		for _, ch := range word {
-// 			mask |= 1 << (ch - 'a')
-// 		}
-// 		//记录当前掩码最大长度，避免重复遍历
-// 		if len(word) > masks[mask] {
-// 			masks[mask] = len(word)
-// 		}
-// 	}
-// 	//缩小遍历空间，避免重复字段多次操作
-// 	for x, lenX := range masks {
-// 		for y, lenY := range masks {
-// 			if x&y == 0 && lenX*lenY > ans {
-// 				ans = lenX * lenY
-// 			}
-// 		}
-// 	}
+func maxProduct(words []string) (ans int) {
+	masks := map[int]int{}
+	for _, word := range words {
+		mask := 0
+		for _, ch := range word {
+			mask |= 1 << (ch - 'a')
+		}
+		//记录当前掩码最大长度，避免重复遍历
+		if len(word) > masks[mask] {
+			masks[mask] = len(word)
+		}
+	}
+	//缩小遍历空间，避免重复字段多次操作
+	for x, lenX := range masks {
+		for y, lenY := range masks {
+			if x&y == 0 && lenX*lenY > ans {
+				ans = lenX * lenY
+			}
+		}
+	}
 
-//		return
-//	}
+	return
+}
 func main() {
 	maxProduct([]string{"abcw", "baz", "foo", "bar", "xtfn", "abcdef"})
 }

@@ -10,34 +10,34 @@ type ListNode struct {
 /*
 模拟法，当没有完成两个链表时，同时遍历，每次取出l1, l2的值，将两值相加，直至两个链表计算完毕，最后再次计算最高位进位
 */
-// func addTwoNumbers(l1 *ListNode, l2 *ListNode) (head *ListNode) {
-// 	var carry int = 0
-// 	var tail *ListNode
-// 	for l1 != nil || l2 != nil { //迭代两个链表
-// 		n1, n2 := 0, 0
-// 		if l1 != nil { //记录当前node1
-// 			n1 = l1.Val
-// 			l1 = l1.Next
-// 		}
-// 		if l2 != nil { //记录node2
-// 			n2 = l2.Val
-// 			l2 = l2.Next
-// 		}
-// 		sum := n1 + n2 + carry      //计算累加值
-// 		sum, carry = sum%10, sum/10 //计算个位、进位
-// 		if head == nil {
-// 			head = &ListNode{Val: sum}
-// 			tail = head
-// 		} else {
-// 			tail.Next = &ListNode{Val: sum}
-// 			tail = tail.Next
-// 		}
-// 	}
-// 	if carry > 0 {
-// 		tail.Next = &ListNode{Val: carry}
-// 	}
-// 	return
-// }
+func addTwoNumbers(l1 *ListNode, l2 *ListNode) (head *ListNode) {
+	var carry int = 0
+	var tail *ListNode
+	for l1 != nil || l2 != nil { //迭代两个链表
+		n1, n2 := 0, 0
+		if l1 != nil { //记录当前node1
+			n1 = l1.Val
+			l1 = l1.Next
+		}
+		if l2 != nil { //记录node2
+			n2 = l2.Val
+			l2 = l2.Next
+		}
+		sum := n1 + n2 + carry      //计算累加值
+		sum, carry = sum%10, sum/10 //计算个位、进位
+		if head == nil {
+			head = &ListNode{Val: sum}
+			tail = head
+		} else {
+			tail.Next = &ListNode{Val: sum}
+			tail = tail.Next
+		}
+	}
+	if carry > 0 {
+		tail.Next = &ListNode{Val: carry}
+	}
+	return
+}
 
 /*
 递归写法,改写法以l1为base节点，每次根据l1节点去调整下一个节点，终止条件为判断（l1,l2）是否为空，前一位carry是否进位

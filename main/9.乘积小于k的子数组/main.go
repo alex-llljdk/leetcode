@@ -9,19 +9,19 @@ import (
 /*
 双指针滑动窗口
 */
-// func numSubarrayProductLessThanK(nums []int, k int) (res int) {
-// 	s := 1
-// 	i := 0
-// 	for j, x := range nums {
-// 		s *= x
-// 		for i <= j && s >= k {
-// 			s /= nums[i]
-// 			i++
-// 		}
-// 		res += j - i + 1
-// 	}
-// 	return res
-// }
+func numSubarrayProductLessThanK(nums []int, k int) (res int) {
+	s := 1
+	i := 0
+	for j, x := range nums {
+		s *= x
+		for i <= j && s >= k {
+			s /= nums[i]
+			i++
+		}
+		res += j - i + 1
+	}
+	return res
+}
 
 /*
 二分查找,原理所有都是正数，那么前缀和为递增

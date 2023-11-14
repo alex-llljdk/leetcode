@@ -18,7 +18,7 @@ func subarraySum(nums []int, k int) int {
 }
 
 /*
-哈希表+前缀和，因为当前数组有正数有负数，故不能使用双指针，时间O(N)，空间O(N)
+哈希表+前缀和，因为当前数组有正数有负数，故不能使用双指针,滑动窗口，时间O(N)，空间O(N)
 */
 // func subarraySum(nums []int, k int) int {
 // 	hash := map[int]int{0: 1} //哈希记录前缀出现次数
