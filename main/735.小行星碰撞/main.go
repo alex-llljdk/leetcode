@@ -1,7 +1,7 @@
 package main
 
 //时间复杂度 n，空间复杂度 n
-
+//利用栈的思想，每次都与最高位进行比较
 func asteroidCollision(asteroids []int) (stk []int) {
 	for _, x := range asteroids {
 		if x > 0 {
