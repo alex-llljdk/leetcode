@@ -8,6 +8,25 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
+//dfs
+func largestValues(root *TreeNode) (ans []int) {
+	var dfs func(*TreeNode, int)
+	dfs = func(node *TreeNode, curHeight int) {
+		if node == nil {
+			return
+		}
+		if curHeight == len(ans) {
+			ans = append(ans, node.Val)
+		} else {
+			ans[curHeight] = max(ans[curHeight], node.Val)
+		}
+		dfs(node.Left, curHeight+1)
+		dfs(node.Right, curHeight+1)
+	}
+	dfs(root, 0)
+	return
+}
+
 //创建两个队列，存放当前层和下一层，通过不断遍历当前层计算出每层最大值
 func largestValues(root *TreeNode) []int {
 	if root == nil {
